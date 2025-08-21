@@ -26,7 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
-require('lazy').setup {
-  spec = 'wypuot.plugins',
-  change_detection = { notify = false },
-}
+-- require('lazy').setup {
+--   spec = 'wypuot.plugins',
+--   change_detection = { notify = false },
+-- }

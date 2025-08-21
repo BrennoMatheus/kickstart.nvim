@@ -1,36 +1,31 @@
-return { -- Autoformat
-  'stevearc/conform.nvim',
-  lazy = false,
-  keys = {
-    {
-      '<leader>f',
-      function()
-        require('conform').format { async = true, lsp_fallback = true }
-      end,
-      mode = '',
-      desc = '[F]ormat buffer',
-    },
-  },
-  opts = {
-    notify_on_error = false,
-    format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true }
-      return {
-        timeout_ms = 500,
-        lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-      }
-    end,
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
-    },
+vim.pack.add { 'https://github.com/stevearc/conform.nvim' }
+
+require('conform').setup {
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    c = { name = 'clangd', timeout_ms = 500, lsp_format = 'prefer' },
   },
 }
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function(args)
+    if vim.g.minifiles_active then
+      return nil
+    end
+
+    -- Skip formatting if triggered from my special save command.
+    if vim.g.skip_formatting then
+      vim.g.skip_formatting = false
+      return nil
+    end
+
+    require('conform').format { bufnr = args.buf }
+  end,
+})
+
+vim.keymap.set('n', '<leader>f', function()
+  require('conform').format { async = true, lsp_fallback = true }
+end)
+
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
