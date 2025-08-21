@@ -17,9 +17,16 @@ require('mini.surround').setup()
 
 require('mini.icons').setup()
 require('mini.files').setup()
-require('mini.splitjoin').setup()
 require('mini.pairs').setup()
 require('mini.extra').setup()
+
+require('mini.splitjoin').setup {
+  mappings = {
+    toggle = 'gS',
+    split = '',
+    join = '',
+  },
+}
 
 local win_config = function()
   local height = math.floor(0.618 * vim.o.lines)

@@ -1,7 +1,6 @@
 require 'wypuot.options'
 require 'wypuot.remap'
 require 'wypuot.autocommands'
--- require 'wypuot.lazy-init'
 
 require 'wypuot.plugins.mason'
 require 'wypuot.plugins.mini'
