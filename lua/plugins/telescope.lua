@@ -23,3 +23,7 @@ vim.keymap.set('n', '<leader><leader>', builtin.buffers)
 vim.keymap.set('n', '<leader>sn', function()
   builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end)
+
+vim.keymap.set('n', '<leader>ep', function()
+  builtin.find_files { cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'site/pack/core/opt') }
+end)
