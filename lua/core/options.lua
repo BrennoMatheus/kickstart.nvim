@@ -30,3 +30,4 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.o.winborder = 'rounded'
+vim.o.cmdheight = 0

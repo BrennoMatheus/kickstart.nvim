@@ -1,1 +1,2 @@
-require 'wypuot'
+require 'core'
+require 'plugins'
