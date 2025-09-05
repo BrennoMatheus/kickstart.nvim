@@ -68,4 +68,4 @@ vim.diagnostic.config {
   } or {},
 }
 
-vim.lsp.enable { 'lua_ls', 'clangd', 'roslyn_ls' }
+vim.lsp.enable { 'lua_ls', 'clangd', 'roslyn_ls', 'html', 'cssls' }
