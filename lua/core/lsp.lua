@@ -27,11 +27,11 @@ local function setup_keymaps(event, client)
   map('K', vim.lsp.buf.hover)
   map('gD', vim.lsp.buf.declaration)
 
-  map('[d', function()
+  map(';d', function()
     vim.diagnostic.jump { count = -1 }
   end)
 
-  map(']d', function()
+  map("'d", function()
     vim.diagnostic.jump { count = 1 }
   end)
 

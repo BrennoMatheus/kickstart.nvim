@@ -6,4 +6,7 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>')
+vim.keymap.set('n', '<leader>q', '<cmd>wq<CR>')
+
 vim.keymap.set('n', '<leader>o', ':restart<CR>')
