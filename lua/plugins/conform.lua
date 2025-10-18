@@ -4,6 +4,18 @@ require('conform').setup {
   formatters_by_ft = {
     lua = { 'stylua' },
     c = { name = 'clangd', timeout_ms = 500, lsp_format = 'prefer' },
+    cs = { 'csharpier' },
+    csproj = { 'csharpier' },
+  },
+  formatters = {
+    csharpier = {
+      command = 'csharpier',
+      args = {
+        'format',
+        '--write-stdout',
+      },
+      to_stdin = true,
+    },
   },
 }
 
