@@ -1,8 +1,11 @@
-vim.pack.add { 'https://github.com/catppuccin/nvim' }
-
-require('catppuccin').setup {
-  flavour = 'mocha',
-  transparent_background = true,
+return {
+  'catppuccin/nvim',
+  priority = 1000,
+  init = function()
+    require('catppuccin').setup {
+      flavour = 'mocha',
+      transparent_background = true,
+    }
+    vim.cmd.colorscheme 'catppuccin'
+  end,
 }
-
-vim.cmd.colorscheme 'catppuccin'

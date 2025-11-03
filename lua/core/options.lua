@@ -29,5 +29,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.o.winborder = 'rounded'
+vim.o.winborder = 'solid'
 vim.o.cmdheight = 0
+vim.opt.fixeol = false
