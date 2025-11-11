@@ -8,6 +8,9 @@ return {
 
     'jbyuki/one-small-step-for-vimkind',
   },
+  cond = function()
+    return not vim.g.vscode
+  end,
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'

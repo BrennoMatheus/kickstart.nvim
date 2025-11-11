@@ -4,6 +4,9 @@ return {
 
   version = '1.*',
   build = 'cargo build --release',
+  cond = function()
+    return not vim.g.vscode
+  end,
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config

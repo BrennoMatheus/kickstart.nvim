@@ -7,7 +7,7 @@ return {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
       cond = function()
-        return vim.fn.executable 'make' == 1
+        return not vim.g.vscode
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
@@ -34,31 +34,33 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
-    local colors = require('catppuccin.palettes').get_palette()
-    local TelescopeColor = {
-      TelescopeMatching = { fg = colors.mauve },
-      TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+    if not vim.g.vscode then
+      local colors = require('catppuccin.palettes').get_palette()
 
-      TelescopePromptPrefix = { bg = colors.mantle },
-      TelescopePromptNormal = { bg = colors.mantle },
-      TelescopeResultsNormal = { bg = colors.mantle },
-      TelescopePreviewNormal = { bg = colors.mantle },
-      TelescopePromptBorder = { bg = colors.mantle, fg = colors.mantle },
-      TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-      TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
-      TelescopePromptTitle = { bg = colors.mantle, fg = colors.mantle },
-      TelescopeResultsTitle = { fg = colors.mantle },
-      TelescopePreviewTitle = { bg = colors.mantle, fg = colors.mantle },
-      FloatBorder = { bg = colors.mantle, fg = colors.mantle },
-    }
+      local TelescopeColor = {
+        TelescopeMatching = { fg = colors.mauve },
+        TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
 
-    for hl, col in pairs(TelescopeColor) do
-      vim.api.nvim_set_hl(0, hl, col)
+        TelescopePromptPrefix = { bg = colors.mantle },
+        TelescopePromptNormal = { bg = colors.mantle },
+        TelescopeResultsNormal = { bg = colors.mantle },
+        TelescopePreviewNormal = { bg = colors.mantle },
+        TelescopePromptBorder = { bg = colors.mantle, fg = colors.mantle },
+        TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+        TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+        TelescopePromptTitle = { bg = colors.mantle, fg = colors.mantle },
+        TelescopeResultsTitle = { fg = colors.mantle },
+        TelescopePreviewTitle = { bg = colors.mantle, fg = colors.mantle },
+        FloatBorder = { bg = colors.mantle, fg = colors.mantle },
+      }
+
+      for hl, col in pairs(TelescopeColor) do
+        vim.api.nvim_set_hl(0, hl, col)
+      end
     end
 
     local builtin = require 'telescope.builtin'
 
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })

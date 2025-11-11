@@ -1,6 +1,9 @@
 return {
   'stevearc/conform.nvim',
   lazy = false,
+  cond = function()
+    return not vim.g.vscode
+  end,
   keys = {
     {
       '<leader>f',
